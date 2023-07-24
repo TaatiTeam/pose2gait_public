@@ -1,0 +1,8 @@
+numpy
+toml
+scikit-learn
+pandas
+argparse
+scipy
+matplotlib
+git+https://github.com/TaatiTeam/pose_sequence.git#egg=pose_sequence

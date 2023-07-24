@@ -1,0 +1,27 @@
+run_name = "example_config"
+num_folds = 10
+base_dir = "/path/to/pose2gait_experiments/"
+
+[data]
+dataset_names = ["ds1", "ds2"]
+sources = ["openpose", "alphapose", "detectron"]
+target_features = ['avg_step_time', 'avg_step_width', 'avg_step_length', 'velocity']
+normalization = "per_video"
+num_frames = 120
+
+[train]
+loss_function = "MSE"  # MSE, MAPE, weightedMSE
+feature_weights = [0.5, 2.0, 1.25, 1.0]
+epochs = 200
+start_epoch = 0
+batch_size = 20
+save_every = 20
+lr = 1e-5
+mirror = false
+
+[model]
+input_joints= 12
+input_dims = 2
+encoder_channels = [14, 8]
+kernel_size = 3
+linear_features = [500, 250, 100]
