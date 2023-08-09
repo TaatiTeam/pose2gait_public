@@ -42,7 +42,7 @@ def extract_alphapose_data():
         csv_dict[i]['start_frame'] = 1
 
     df = pd.DataFrame(csv_dict)
-    df.to_csv('sample_keypoints.csv', index=False)
+    df.to_csv('demos/sample_keypoints.csv', index=False)
 
 def normalize(sequence, hip_names=('LHip', 'RHip')):
     target_frame = sequence.num_frames // 2
@@ -93,9 +93,9 @@ def infer_sequence():
     with torch.no_grad():
         for sequence in sequences:
             predictions = model(sequence)
-            print(predictions)
-            print(f'Step time: {predictions[0][0]} s\nStep width: {predictions[0][1]} m\nStep length: {predictions[0][2]} m\nVelocity: {predictions[0][3]} m/s')
-            print()
+            with open("demos/sample_output.txt", "w") as f:
+                f.write(f'Step time: {predictions[0][0]} s\nStep width: {predictions[0][1]} m\nStep length: {predictions[0][2]} m\nVelocity: {predictions[0][3]} m/s')
+                print()
     
 if __name__ == "__main__":
     extract_alphapose_data()
